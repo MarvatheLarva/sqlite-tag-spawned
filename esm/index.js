@@ -21,6 +21,8 @@ const exec = (res, rej, type, bin, args, opts) => {
       if (type === 'query')
         res(result);
       else {
+        if (!result) { return res(null) }
+
         const json = parse(result);
         res(type === 'get' && isArray(json) ? json.shift() : json);
       }
